@@ -1,0 +1,50 @@
+#include<stdio.h>
+int main()
+{ 
+  int symb[10], slovo, count_symb = 0, stolbec, stroka, max_lenght = 0 ;
+
+  /*Инициализация массива [0]*/
+  for (int j = 0; j<10 ; j++)
+    symb[j] = 0;
+  
+
+  for (int i =0; i < 10; i++)
+  {
+    while(slovo = getchar())
+      {
+        if (slovo == -1)
+            break;
+        else if (slovo == ' ')
+          break;
+        else 
+          ++count_symb;
+      }
+    symb[i] = count_symb;
+    if (slovo == -1)
+      {
+        symb[i] = count_symb - 1;
+        break;
+      }
+    count_symb = 0;
+  }
+
+  printf("<====================Vertical gistogramm====================>\n");
+  /*Берётся верхняя строчка "таблицы" массива*/
+  for(stroka = 10; stroka = 0; --stroka)
+    {
+      /*По этой строчке делается выборка по каждому столбцу с указанием "потолка" гистограммы*/
+      for(stolbec = 0; stolbec < 10 ; ++stolbec)       
+        {
+          max_lenght = symb[stolbec];
+          for(; max_lenght; --max_lenght)
+          {
+            if (max_lenght < 10)
+              printf("|X|");
+            else
+              printf("| |");
+          }
+        }
+      putchar('\n');
+    }
+  return 0; 
+}

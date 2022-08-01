@@ -1,0 +1,19 @@
+#include<stdio.h>
+int main()
+{ 
+  int count;
+   while(count = getchar())   //Пока работает входной поток, выполняй цикл
+    {
+      if (count == '\t')      //Если во входном потоке обнаружиться "Табуляция", выводи её знак.
+        printf("\\t");
+      else if(count == '0')
+        printf("\\b");
+      else if(count == '\\')
+        printf("\\");
+      else if (count == -1)
+        break;
+      else
+        putchar(count);     
+    }
+  return 0; 
+}

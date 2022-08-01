@@ -1,0 +1,39 @@
+/*Напишите функцию reverse(s) которая переписывает свой строковой аргумент s в обратном порядке.
+Воспользуйтесь ею для написания программы которая бы выполняла такое обращение над 
+каждой строкой входного потока по очереди*/
+#include<stdio.h>
+#include<string.h>
+#define MAXLINE 50
+
+void reverse (char slovo[])
+  {
+    int len = strlen(slovo)-1;
+    char dr_slovo[len];
+      for (int i = 0; i < len; ++i)
+        {
+            dr_slovo[len-1-i] = slovo[i];
+        }
+    printf ("%s\n", dr_slovo);
+  }
+
+int main()
+{ 
+  int slovo = 0;
+  char word[MAXLINE];
+  int i = 0;
+  while(slovo != EOF)
+    {
+      word[i] = getchar();
+      if (word[i] == '\n')
+        {
+          reverse(word);
+            for(int k = 0; k < MAXLINE; k++)
+              word[k] = 0;
+          i = 0;
+          continue;
+        }
+      ++i;
+    }  
+  return 0; 
+}
+
