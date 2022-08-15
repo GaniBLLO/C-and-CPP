@@ -3,3 +3,10 @@
 *.vcxproj
 *.user
 *.tlog
+*.vcxproj.filters
+*.exe.recipe
+*.ilk
+*.log
+*.obj
+*.idb
+*.pdb
