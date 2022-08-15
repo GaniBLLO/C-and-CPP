@@ -1,2 +1,5 @@
 *.vs
-
+*.sln
+*.vcxproj
+*.user
+*.tlog
