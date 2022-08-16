@@ -1,65 +1,80 @@
-﻿#include <map>
+#include <map>
 #include <string>
 #include <vector>
 #include <iostream>
 
+using namespace std;
 int main()
 {
-    std::map<std::string, std::vector<std::string>> bus_stop;
-    std::vector<std::string> stops;
-    std::string zapros, bus, stop;
+    map<string, vector<string>> bus_stop;
+    vector<std::string> stops;
+    string zapros, bus, stop;
     int Q = 0, i, stop_count;
-    std::cin >> i;
+    cin >> i;
     while (Q < i)
+    {
+        cin >> zapros;
+        if (zapros == "ALL_BUSES")
         {
-            std::cin >> zapros;
-            if (zapros == "ALL_BUSES")
+            if (bus_stop.empty())
+                cout << "No buses\n";
+            else
+            {
+                for (auto ui : bus_stop)
                 {
-                    if (bus_stop.empty())
-                        std::cout << "No buses";
-                    else
-                        {
-
-                        }
+                    cout << "Bus " << ui.first << ": ";
+                    for (int i = 0; i < ui.second.size(); i++)
+                        cout << ui.second[i] << " ";
                 }
-            else if (zapros == "STOP_FOR_BUS")
-                {
-                    std::cin >> bus;
-                    if (bus_stop.empty())
-                        std::cout << "No bus";
-                    else
-                        {
-
-                        }
-                }
-            else if (zapros == "BUSES_FOR_STOP")
-                {
-                    std::cin >> stop;
-                    if (bus_stop.empty())
-                        std::cout << "No stop";
-                    else
-                        {
-                            for (auto stopers : bus_stop)
-                            {
-                                std::cout << stopers.first << " ";
-                                for (int i = 0; i < stops.size(); i++)
-                                    std::cout << stops[i] << " ";
-                            }
-                        }
-                }
-            else if (zapros == "NEW_BUS")
-                {
-                    std::cin >> bus >> stop_count;
-                    for (auto in : bus_stop)
-                        {
-                            for (int i = 0; i < stop_count; i++)
-                                {
-                                    std::cin >> stop;
-
-                                }
-                        }
-                }
-            Q++;
+                cout << endl;
+            }
         }
+        else if (zapros == "STOPS_FOR_BUS")
+        {
+            cin >> bus;
+            if (bus_stop.empty())
+                cout << "No bus\n";
+            else if (bus_stop.count(bus) == 0)
+                {
+                    cout << "no interchange\n";
+                }
+            else 
+                {
+                for (auto ui : bus_stop)
+                {
+                    cout << "Bus " << ui.first << ": ";
+                    for (int i = 0; i < ui.second.size(); i++)
+                        cout << ui.second[i] << " ";
+                }
+                cout << endl;
+                }
+        }
+        else if (zapros == "BUSES_FOR_STOP")
+        {
+            cin >> stop;
+            if (bus_stop.empty())
+                cout << "No stop\n";
+            else
+            {
+                for (auto stopers : bus_stop)
+                {
+                    cout << stopers.first << " ";
+                    for (int i = 0; i < stops.size(); i++)
+                        cout << stops[i] << " ";
+                }
+            }
+        }
+        else if (zapros == "NEW_BUS")
+        {
+            cin >> bus >> stop_count;
+            for (int i = 0; i < stop_count; i++)
+                {
+                    cin >> stop;
+                    stops.push_back(stop);
+                }   
+            bus_stop[bus] = stops;
+        }
+        Q++;
+    }
     return 0;
 }
