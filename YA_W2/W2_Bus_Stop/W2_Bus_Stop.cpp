@@ -40,13 +40,16 @@ int main()
                 }
             else 
                 {
-                for (auto ui : bus_stop)
+                if (bus_stop.count(bus))
                 {
-                    cout << "Bus " << ui.first << ": ";
-                    for (int i = 0; i < ui.second.size(); i++)
-                        cout << ui.second[i] << " ";
+                    for (auto ui : bus_stop)
+                        {
+                            cout << "Bus " << ui.first << ": ";
+                            for (int i = 0; i < ui.second.size(); i++)
+                                cout << ui.second[i] << " ";
+                        }
+                    cout << endl;
                 }
-                cout << endl;
                 }
         }
         else if (zapros == "BUSES_FOR_STOP")
@@ -56,23 +59,30 @@ int main()
                 cout << "No stop\n";
             else
             {
-                for (auto stopers : bus_stop)
-                {
-                    cout << stopers.first << " ";
-                    for (int i = 0; i < stops.size(); i++)
-                        cout << stops[i] << " ";
-                }
+                for (auto ui : bus_stop)
+                    {
+                    for (int i = 0; i < ui.second.size(); i++)
+                        {
+                            if (ui.second[i] == stop)
+                            {
+                                cout << ui.first << " ";
+                                break;
+                            }
+                        }
+                    }
+                cout << endl;
             }
         }
         else if (zapros == "NEW_BUS")
         {
             cin >> bus >> stop_count;
-            for (int i = 0; i < stop_count; i++)
+                for (int i = 0; i < stop_count; i++)
                 {
                     cin >> stop;
                     stops.push_back(stop);
-                }   
-            bus_stop[bus] = stops;
+                }
+                bus_stop[bus] = stops;
+                stops.clear();
         }
         Q++;
     }
