@@ -1,4 +1,4 @@
-//Автобусные остановки
+//The bus stations
 #include <map>
 #include <string>
 #include <vector>
@@ -15,7 +15,7 @@ int main()
     while (Q < i)
     {
         cin >> zapros;
-        if (zapros == "ALL_BUSES")                  //Вывод всех автобусов и остановок в консоли
+        if (zapros == "ALL_BUSES")                                   //Output all buses and stops in console
         {
             if (bus_stop.empty())
                 cout << "No buses\n";
@@ -30,22 +30,25 @@ int main()
                         }
                 }
         }
-        else if (zapros == "STOPS_FOR_BUS")                  //Вывод остановок определённого автобуса
+        else if (zapros == "STOPS_FOR_BUS")                             //Output stops of bus station
         {
             cin >> bus;
-            for (auto ui : bus_stop)
+            if (bus_stop.empty())                                       //If container is empty(no routes)
+                cout << "No bus\n";
+            else
                 {
-                    if (ui.first == bus)                         //Если есть "ключ" - автобуса, выводим все остановки
+                    for (auto ui : bus_stop)
                     {
-                        cout << "Bus " << ui.first << ": ";
-                        for (int i = 0; i < ui.second.size(); i++)
-                            cout << ui.second[i] << " ";
+                        if (ui.first == bus)                            //If in our container we have needed "key", output "stops"
+                        {
+                            cout << "Bus " << ui.first << ": ";
+                            for (int i = 0; i < ui.second.size(); i++)
+                                cout << ui.second[i] << " ";
+                        }
+                        else
+                            cout << "no interchange";
                     }
-                    else if (!ui.first.empty())                   //Если контейнер со значениями не пустой, но и нет значений, выводи сообщение!
-                        cout << "no interchange\n";
-                    else if (ui.first.empty())                    //Сообщение выводится при отсутствии маршрута
-                        cout << "No bus\n";                       
-                }      
+                }
             cout << endl;
         }
         else if (zapros == "BUSES_FOR_STOP")        //Вывод автобусов которые останавливаются на опред. остановке
