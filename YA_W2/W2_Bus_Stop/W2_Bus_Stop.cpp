@@ -34,7 +34,7 @@ int main()
         {
             cin >> bus;
             if (bus_stop.empty())                                       //If container is empty(no routes)
-                cout << "No bus\n";
+                cout << "No bus";
             else
                 {
                     for (auto ui : bus_stop)
@@ -45,17 +45,15 @@ int main()
                             for (int i = 0; i < ui.second.size(); i++)
                                 cout << ui.second[i] << " ";
                         }
-                        else
-                            cout << "no interchange";
                     }
                 }
             cout << endl;
         }
-        else if (zapros == "BUSES_FOR_STOP")        //¬ывод автобусов которые останавливаютс€ на опред. остановке
+        else if (zapros == "BUSES_FOR_STOP")                            //Output buses which make stop at the "stops"
         {
             cin >> stop;
             if (bus_stop.empty())
-                cout << "No stop\n";
+                cout << "No stop\n";                                    //If havn't got data in container
             else
                 {
                     for (auto ui : bus_stop)
@@ -72,7 +70,7 @@ int main()
                     cout << endl;
                 }
         }
-        else if (zapros == "NEW_BUS")               //¬вод автобусов и остановок
+        else if (zapros == "NEW_BUS")                                    //Input buses with routes
             {
                 cin >> bus >> stop_count;
                     for (int i = 0; i < stop_count; i++)
