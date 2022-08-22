@@ -1,3 +1,4 @@
+//The bus stations
 #include <map>
 #include <string>
 #include <vector>
@@ -14,76 +15,72 @@ int main()
     while (Q < i)
     {
         cin >> zapros;
-        if (zapros == "ALL_BUSES")
+        if (zapros == "ALL_BUSES")                                   //Output all buses and stops in console
         {
             if (bus_stop.empty())
                 cout << "No buses\n";
             else
-            {
-                for (auto ui : bus_stop)
-                {
-                    cout << "Bus " << ui.first << ": ";
-                    for (int i = 0; i < ui.second.size(); i++)
-                        cout << ui.second[i] << " ";
-                }
-                cout << endl;
-            }
-        }
-        else if (zapros == "STOPS_FOR_BUS")
-        {
-            cin >> bus;
-            if (bus_stop.empty())
-                cout << "No bus\n";
-            else if (bus_stop.count(bus) == 0)
-                {
-                    cout << "no interchange\n";
-                }
-            else 
-                {
-                if (bus_stop.count(bus))
                 {
                     for (auto ui : bus_stop)
                         {
                             cout << "Bus " << ui.first << ": ";
                             for (int i = 0; i < ui.second.size(); i++)
                                 cout << ui.second[i] << " ";
+                            cout << endl;
                         }
-                    cout << endl;
-                }
                 }
         }
-        else if (zapros == "BUSES_FOR_STOP")
+        else if (zapros == "STOPS_FOR_BUS")                             //Output stops of bus station
+        {
+            cin >> bus;
+            if (bus_stop.empty())                                       //If container is empty(no routes)
+                cout << "No bus";
+            else
+                {
+                    for (auto ui : bus_stop)
+                    {
+                        if (ui.first == bus)                            //If in our container we have needed "key", output "stops"
+                        {
+                            cout << "Bus " << ui.first << ": ";
+                            for (int i = 0; i < ui.second.size(); i++)
+                                cout << ui.second[i] << " ";
+                        }
+                    }
+                }
+            cout << endl;
+        }
+        else if (zapros == "BUSES_FOR_STOP")                            //Output buses which make stop at the "stops"
         {
             cin >> stop;
             if (bus_stop.empty())
-                cout << "No stop\n";
+                cout << "No stop\n";                                    //If havn't got data in container
             else
-            {
-                for (auto ui : bus_stop)
-                    {
-                    for (int i = 0; i < ui.second.size(); i++)
+                {
+                    for (auto ui : bus_stop)
                         {
-                            if (ui.second[i] == stop)
+                        for (int i = 0; i < ui.second.size(); i++)
                             {
-                                cout << ui.first << " ";
-                                break;
+                                if (ui.second[i] == stop)
+                                    {
+                                        cout << ui.first << " ";
+                                        break;
+                                    }
                             }
                         }
-                    }
-                cout << endl;
-            }
-        }
-        else if (zapros == "NEW_BUS")
-        {
-            cin >> bus >> stop_count;
-                for (int i = 0; i < stop_count; i++)
-                {
-                    cin >> stop;
-                    stops.push_back(stop);
+                    cout << endl;
                 }
-                bus_stop[bus] = stops;
-                stops.clear();
         }
+        else if (zapros == "NEW_BUS")                                    //Input buses with routes
+            {
+                cin >> bus >> stop_count;
+                    for (int i = 0; i < stop_count; i++)
+                        {
+                            cin >> stop;
+                            stops.push_back(stop);
+                        }
+                    bus_stop[bus] = stops;
+                    stops.clear();
+            }
         Q++;
     }
     return 0;
