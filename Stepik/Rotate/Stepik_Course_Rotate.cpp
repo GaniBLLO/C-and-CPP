@@ -6,13 +6,11 @@ void rotate(int a[], unsigned size, int shift) // array, size of array, shift va
     int temp;
     for(int i = 0; i < shift; ++i)
         {
-            int k = 0;
             for (int* p = a; p < a + size -1; p++)
                 {
                     temp = *p;
-                    *p = p[shift - 1 -k];
-                    p[shift - 1 - k] = temp;
-                    k++;
+                    *p = *(p+1);
+                    *(p+1)= temp;
                 }        
         }
 }
