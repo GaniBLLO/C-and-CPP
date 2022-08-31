@@ -4,21 +4,17 @@
 void rotate(int a[], unsigned size, int shift) // array, size of array, shift value
 {
     int temp;
-    for(int* pa = a; pa <= a+size; ++pa)
-    {
-        temp = *pa;
-        if(pa >= a+size)
-            {
-                *pa = pa[shift-1];
-                pa[shift-1] = temp;
-            }
-        else
-            {
-                *pa = pa[shift];
-                pa[shift] = temp;
-            }
-        
-    }
+    for(int i = 0; i < shift; ++i)
+        {
+            int k = 0;
+            for (int* p = a; p < a + size -1; p++)
+                {
+                    temp = *p;
+                    *p = p[shift - 1 -k];
+                    p[shift - 1 - k] = temp;
+                    k++;
+                }        
+        }
 }
 
 
@@ -29,6 +25,7 @@ int main()
     rotate(a, array_size, sh);
     return 0;
 }
+
 
 
 
