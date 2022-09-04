@@ -1,0 +1,16 @@
+\documentclass[a4paper,14pt]{article}
+\usepackage[14pt]{extsizes} % Размер стандартного разамера шрифта
+\usepackage{setspace}
+\usepackage{cmap}					% поиск в PDF
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm,bindingoffset=0cm]{geometry}
+\usepackage{graphicx}
+\graphicspath{{noiseimages/}}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.5}
+\onehalfspacing % полуторный интервал для всего текста
+\usepackage{layout}
+\usepackage{multirow}
+\usepackage[T2A]{fontenc}			% кодировка
+\usepackage[utf8]{inputenc}			% кодировка исходного текста
+\usepackage[russian]{babel}	% локализация и переносы
+\usepackage{csquotes} % ещё одна штука для цитат
