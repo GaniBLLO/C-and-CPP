@@ -1,6 +1,4 @@
 #include<stdio.h> 
-#include < string.h >
-
 
 int strst(const char* text, const char* pattern)
 {
