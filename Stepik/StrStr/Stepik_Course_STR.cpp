@@ -4,27 +4,32 @@
 
 int strst(const char* text, const char* pattern)
 {
-    char tmp;
-    int i = 0;
-    while (*text)
+    int sovpadenii = 0;
+    while (*text && *pattern != '\0')
         {
-            if (*text == *pattern)
+            if (*text == *pattern )
                 {
-                    i++;
                     pattern++;
                     text++;
+                    sovpadenii++;
                 }
             else
+            {
                 text++;
+            }
         }
-    return i;
+    if (sovpadenii == 0)
+        {
+            return - 1;
+        }
+    return *(text - sovpadenii -1 );
 }
 
 
 int main()
 {
-    char words[] = {""};
-    char words_1[] = {"mell"};
+    char words[] = {"bolba"};
+    char words_1[] = {"bo"};
     int key = strst(words, words_1);
     return 0;
 }
