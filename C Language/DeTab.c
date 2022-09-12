@@ -1,19 +1,20 @@
 ﻿/*Program name: Detab.
 In this program SPACEs == TABs. Change tabs('\t') by spaces(' ')*/
 #include<stdio.h>
+
 #define SPACES	4		
 
 bool ReadChar(int& c)
 {
-	char k = ' ';
-	c = getchar();					//Read input symb.
+	c = getchar();										//Read input symb.
 	{
-		if (c == '\t')				//If symb == '\t'
+		if (c == '\t')									//If symb == '\t'
 		{
-			for (int i = 0; i < SPACES - 1; i++)
-				{
-					printf("%s", k);
-				}
+			printf("%4s", c);
+			//for (int i = 0; i < SPACES - 1; i++)		
+			//	{
+					
+			//	}
 		}
 		else
 			return c != EOF;
