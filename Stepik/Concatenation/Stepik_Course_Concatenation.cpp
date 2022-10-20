@@ -1,26 +1,19 @@
 #include<stdio.h> 
 
-void rotate(char *to, const char* from) 
+void strcatr(char* to, const char* from)
 {
-    char* tmp;
-    for (char* word_1 = to; word_1; word_1++)
-    {
-       if(*word_1 == '\0')
-           for (const char* word_2 = from; word_2; word_2++)
-           {
-               tmp = word_1;
-               word_1 = from;
-               from = tmp;
-           }
-    }
+    while (*to != '\0')
+        *++to;
+    while (*from != '\0')
+        *to++ = *from++;
+    *to = '\0';
 }
 
 
 
 int main()
 {
-    char words[11] = {"Hello"};
-    char words_1[] = {"World"};
-    rotate(words, words_1);
+    char w_1[7] = { "era" }, w_2[] = { "mag" };
+    strcatr(w_1, w_2);
     return 0;
 }
