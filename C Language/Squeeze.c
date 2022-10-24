@@ -1,8 +1,6 @@
 ﻿/*Program name: squeezek.
-In this program s2 delete all removes what appears in the string s1
+In this program s2 delete all removes what appears in the string s1*/
 #include<stdio.h>
-
-#define SPACES	4		
 
 void squeezek(char s1[], const char s2[])
 {
