@@ -1,38 +1,59 @@
 /*Write program which reverse input word*/
 #include<stdio.h>
-#include<string.h>
+#include<cstringt.h>
 #define MAXLINE 50
 
-void reverse (char slovo[])
-  {
-    int len = strlen(slovo)-1;
-    char dr_slovo[len];
-      for (int i = 0; i < len; ++i)
-        {
-            dr_slovo[len-1-i] = slovo[i];
-        }
-    printf ("%s\n", dr_slovo);
-  }
+void reverse(char slovo[], int index)
+{
+    int len = strlen(slovo);
+    if (len / 2 == index)
+        return;
+    else
+    {
+        char tmp = slovo[index];
+        slovo[index] = slovo[len - 1 - index];
+        slovo[len - 1 - index] = tmp;
+        reverse(slovo, ++index);
+    }
+        
+}
+
+void reverse(char slovo[])
+{
+    int len = strlen(slovo), i =0;
+    char dr_slovo[MAXLINE];
+    while(i < len)
+    {
+        dr_slovo[len - 1 - i] = slovo[i];
+        ++i;
+    }
+    dr_slovo[i] = '\0';
+    printf("%s\n", dr_slovo);
+}
+
 
 int main()
-{ 
-  int slovo = 0;
-  char word[MAXLINE];
-  int i = 0;
-  while(slovo != EOF)
+{
+    int slovo = 0, i = 0;
+    char word[MAXLINE];
+    while ((word[i] = getchar()) != EOF)
     {
-      word[i] = getchar();
-      if (word[i] == '\n')
+        if (word[i] == '\n')
         {
-          reverse(word);
-            for(int k = 0; k < MAXLINE-1; k++)
-              word[k] = 0;
-          i = 0;
-          continue;
+            word[i] = '\0';
+            int index = 0;
+            reverse(word, index);
+            printf(word);
+            printf("\n");
+            reverse(word);
+            printf("\n");
+            printf("\n");
+            for (int k = 0; k < MAXLINE - 1; k++)
+                word[k] = 0;
+            i = 0;
+            continue;
         }
-      else if (word[i] == -1)
-        break;
-      ++i;
-    }  
-  return 0; 
+        ++i;
+    }
+    return 0;
 }
