@@ -1,2 +1,3 @@
-# C-and-CPP
-I'm learning C and C++ language and in this repository i'll add some tasks from the books. 
+# STM32F103c6t6 project.
+My project in STM32F103c6t6 (blue pill).
+
