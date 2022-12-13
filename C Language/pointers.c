@@ -1,5 +1,11 @@
 #include<stdio.h>
 #define MAXLINE 50
+
+static const char daytab[2][13] = {
+    {0,31,28,31,30,31,30,31,31,30,31,30,31},
+    {0,31,29,31,30,31,30,31,31,30,31,30,31},
+};
+
 //Task 5.3 Write a pointer version of the function strcat: strcat(s,t) copies the string t to the end of s.
 void strcut(char* s, char* t)
 {
@@ -112,7 +118,46 @@ void reverse(char* slovo, int lenght)
     printf("Result reverse function: %s\n", dr_slovo);
 }
 
+/*Task 5.9 Rewrite the routines day_of_year and month_day with pointers instead of indexing*/
+//day_of_year
+int day_of_year(int year, int month, int day) {
+    int i, leap;
+    if (year <= 0 || (month < 0 || month > 12) || (day < 0 || day >= 32))
+        {
+            printf("Error in data!\n");
+            return -1;
+        }
+    else if (year >= 0 && (month >= 0 && month <= 12) && (day >= 0 && day <= 31))
+    {
+        leap = year % 4 == 0 && year % 100 != 0 || year % 400 == 0;
+        const char* p = daytab[leap];
+        ++p;
+        for (i = 1; i < month; i++) {
+            day += *p++;
+        }
+        printf("%d days in %d\n", day, year);
+        return day;
+    }
+}
 
+//month_day
+void month_day(int year, int yearday, int* pmonth, int* pday) {
+    int i, leap, all_days = yearday;
+    if (year <= 0 && (yearday < 0 || yearday > 365))
+        printf("Error in data!\n");
+    else if (year > 0 && (yearday > 0 || yearday <= 365)) {
+        leap = year % 4 == 0 && year % 100 != 0 || year % 400 == 0;
+        const char* p = daytab[leap];
+        ++p;
+        for (i = 1; yearday > *p; ++i) {
+            yearday -= *p++;
+        }
+    }
+    *pmonth = i;
+    *pday = yearday;
+    printf("Day:%d of the %dth month after %d days in %d\n", *pday, *pmonth, all_days, year);
+}
+ 
 
 
 int main()
@@ -167,6 +212,11 @@ int main()
     printf("Result 'atoi' funcrion: %d\n", i);
 
     reverse(word_for_5_6, MAXLINE);
+//////////////////////////////////////////////////////////////
+//For task 5.9
+	int day = 16, month = 5;
 
-    return 0;
+	month_day(905, 271, &month, &day);
+	day_of_year(905, 9, 28);
+	return 0;
 }
