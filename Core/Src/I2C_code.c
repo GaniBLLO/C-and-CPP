@@ -6,6 +6,8 @@
  */
 #include "I2C_code.h"
 #define I2C_ADDRESS_WRITE (0x40 << 1)
+#define I2C_ADDRESS_READ (0x41 << 1)
+
 I2C_HandleTypeDef hi2c1;
 
 void I2C_func(void){
@@ -44,15 +46,13 @@ static void MX_I2C1_Init(void){
 
 HAL_StatusTypeDef write_data_to_LCD(uint8_t* word, uint16_t LenWord){
 	HAL_StatusTypeDef returnValue;
-	returnValue = HAL_I2C_Master_Transmit(&hi2c1,I2C_ADDRESS_WRITE, word, LenWord, HAL_MAX_DELAY);
-
+	return returnValue = HAL_I2C_Master_Transmit(&hi2c1,I2C_ADDRESS_WRITE, word, LenWord, HAL_MAX_DELAY);
 }
 
 
 HAL_StatusTypeDef read_data_on_LCD(uint8_t* buffer, uint16_t LenWord){
 	HAL_StatusTypeDef returnValue;
-
-	return returnValue = HAL_I2C_Master_Receive(&hi2c1,I2C_ADDRESS_WRITE, buffer, LenWord, HAL_MAX_DELAY);;
+	return returnValue = HAL_I2C_Master_Receive(&hi2c1,I2C_ADDRESS_READ, buffer, LenWord, HAL_MAX_DELAY);;
 }
 
 

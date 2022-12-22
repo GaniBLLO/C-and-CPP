@@ -1,0 +1,5 @@
+../Core/Src/I2C_code.c:13:6:I2C_func	8	static
+../Core/Src/I2C_code.c:17:13:MX_I2C1_Init	32	static
+../Core/Src/I2C_code.c:47:19:write_data_to_LCD	32	static
+../Core/Src/I2C_code.c:53:19:read_data_on_LCD	32	static
+../Core/Src/I2C_code.c:59:6:Error_Handler	4	static,ignoring_inline_asm

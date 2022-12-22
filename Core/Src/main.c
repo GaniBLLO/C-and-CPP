@@ -1,36 +1,33 @@
 #include "main.h"
 #include <string.h>
 #include "I2C_code.h"
-#define I2C_ADDRESS 0x40
+#include "GPIO_code.h"
+#include "ADC_code.h"
 
+//void SystemClock_Config(void);
 
-/* USER CODE BEGIN PV */
-
-/* USER CODE END PV */
-
-/* Private function prototypes -----------------------------------------------*/
-void SystemClock_Config(void);
-static void MX_GPIO_Init(void);
 
 int main(void)
 {
-	const char word[] = "Hello World!";
-	char buffer[20];
-
+	//const char word[] = "Hello World!";
+	//char buffer[20];
 	HAL_Init();
 
 	//SystemClock_Config();
-	MX_GPIO_Init();
-	I2C_func();
+	GPIO_Init();
+	ADC_Init();
+	//I2C_func();
 
-	write_data_to_LCD((uint8_t*)word, strlen(word));
-	read_data_on_LCD((uint8_t*)buffer, strlen(word));
-	if(strcmp(word, buffer) == 0){
-		while(1){
-			HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
-			HAL_Delay(1000);
-		}
-	}
+	//write_data_to_LCD((uint8_t*)word, strlen(word));
+	//read_data_on_LCD((uint8_t*)buffer, strlen(word));
+
+//	if(strcmp(word, buffer) == 0){
+//		while(1){
+//			HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_10);
+//			HAL_Delay(1000);
+//		}
+//	}
+	while(1);
 }
 
 
@@ -75,26 +72,6 @@ void SystemClock_Config(void)
   * @param None
   * @retval None
   */
-static void MX_GPIO_Init(void)
-{
-  GPIO_InitTypeDef GPIO_InitStruct = {0};
-
-  /* GPIO Ports Clock Enable */
-  __HAL_RCC_GPIOB_CLK_ENABLE();
-  __HAL_RCC_GPIOA_CLK_ENABLE();
-
-  /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_RESET);
-
-  /*Configure GPIO pin : LED_Pin */
-  GPIO_InitStruct.Pin = LED_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(LED_GPIO_Port, &GPIO_InitStruct);
-
-}
-
 
 
 #ifdef  USE_FULL_ASSERT

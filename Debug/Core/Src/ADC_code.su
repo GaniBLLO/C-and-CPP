@@ -1,0 +1,2 @@
+../Core/Src/ADC_code.c:13:6:ADC_Init	8	static
+../Core/Src/ADC_code.c:20:13:MX_ADC1_Init	24	static

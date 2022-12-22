@@ -1,0 +1,4 @@
+../Core/Src/GPIO_code.c:12:6:EXTI15_10_IRQHandler	8	static
+../Core/Src/GPIO_code.c:16:6:HAL_GPIO_EXTI_Callback	16	static
+../Core/Src/GPIO_code.c:24:6:GPIO_Init	8	static
+../Core/Src/GPIO_code.c:29:13:MX_GPIO_Init	32	static
