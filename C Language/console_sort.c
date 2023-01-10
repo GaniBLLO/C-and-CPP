@@ -55,6 +55,14 @@ int main(int argc, char* argv[])
 		printf("-s: sort\n");
 		printf("-n: number\n");
 	}
+	if(reverse)
+		printf("You choose reverse\n");
+	if (print)
+		printf("You choose print\n");
+	if (number)
+		printf("You choose number\n");
+	if (sort)
+		printf("You choose sort\n");
 	//if (argc != 1)
 	//	printf("Usage: find -x -n pattern\n");
 	
